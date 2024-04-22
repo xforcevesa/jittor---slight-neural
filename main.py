@@ -1,6 +1,8 @@
 import jittor as jt
 from jittor import nn
 
+jt.flags.use_cuda = 1
+
 
 class MLP(jt.Module):
 
