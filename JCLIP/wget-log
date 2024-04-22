@@ -1,0 +1,11 @@
+--2024-04-22 17:30:13--  https://github.com/uyzhang/JCLIP/releases/download/%E6%9D%83%E9%87%8D/ViT-B-32.pkl
+正在连接 127.0.0.1:8889... 已连接。
+已发出 Proxy 请求，正在等待回应... 302 Found
+位置：https://objects.githubusercontent.com/github-production-release-asset-2e65be/780335523/35afb8e0-798a-4f6a-a4f0-6b6db4e61b7a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240422%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240422T093014Z&X-Amz-Expires=300&X-Amz-Signature=0008600a3605bafd3ac1bc884e77c5e8ee06ba4fd8b3565d671eabd96ee1abf1&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=780335523&response-content-disposition=attachment%3B%20filename%3DViT-B-32.pkl&response-content-type=application%2Foctet-stream [跟随至新的 URL]
+--2024-04-22 17:30:14--  https://objects.githubusercontent.com/github-production-release-asset-2e65be/780335523/35afb8e0-798a-4f6a-a4f0-6b6db4e61b7a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240422%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240422T093014Z&X-Amz-Expires=300&X-Amz-Signature=0008600a3605bafd3ac1bc884e77c5e8ee06ba4fd8b3565d671eabd96ee1abf1&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=780335523&response-content-disposition=attachment%3B%20filename%3DViT-B-32.pkl&response-content-type=application%2Foctet-stream
+正在连接 127.0.0.1:8889... 已连接。
+已发出 Proxy 请求，正在等待回应... 200 OK
+长度： 605144749 (577M) [application/octet-stream]
+正在保存至: ‘ViT-B-32.pkl’
+
+ViT-B-32.pkl                     6%[==>                                                 ]  38.54M   614KB/s    剩余 14m 51s
