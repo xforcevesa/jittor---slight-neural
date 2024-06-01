@@ -4,24 +4,42 @@ import argparse
 import os
 import numpy as np
 import math
+import dataclasses
 from jittor import nn
 
 if jt.has_cuda:
     jt.flags.use_cuda = 1
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--n_epochs', type=int, default=100, help='number of epochs of training')
-parser.add_argument('--batch_size', type=int, default=64, help='size of the batches')
-parser.add_argument('--lr', type=float, default=0.0002, help='adam: learning rate')
-parser.add_argument('--b1', type=float, default=0.5, help='adam: decay of first order momentum of gradient')
-parser.add_argument('--b2', type=float, default=0.999, help='adam: decay of first order momentum of gradient')
-parser.add_argument('--n_cpu', type=int, default=8, help='number of cpu threads to use during batch generation')
-parser.add_argument('--latent_dim', type=int, default=100, help='dimensionality of the latent space')
-parser.add_argument('--n_classes', type=int, default=10, help='number of classes for dataset')
-parser.add_argument('--img_size', type=int, default=32, help='size of each image dimension')
-parser.add_argument('--channels', type=int, default=1, help='number of image channels')
-parser.add_argument('--sample_interval', type=int, default=1000, help='interval between image sampling')
-opt = parser.parse_args()
+# parser = argparse.ArgumentParser()
+# parser.add_argument('--n_epochs', type=int, default=100, help='number of epochs of training')
+# parser.add_argument('--batch_size', type=int, default=64, help='size of the batches')
+# parser.add_argument('--lr', type=float, default=0.0002, help='adam: learning rate')
+# parser.add_argument('--b1', type=float, default=0.5, help='adam: decay of first order momentum of gradient')
+# parser.add_argument('--b2', type=float, default=0.999, help='adam: decay of first order momentum of gradient')
+# parser.add_argument('--n_cpu', type=int, default=8, help='number of cpu threads to use during batch generation')
+# parser.add_argument('--latent_dim', type=int, default=100, help='dimensionality of the latent space')
+# parser.add_argument('--n_classes', type=int, default=10, help='number of classes for dataset')
+# parser.add_argument('--img_size', type=int, default=32, help='size of each image dimension')
+# parser.add_argument('--channels', type=int, default=1, help='number of image channels')
+# parser.add_argument('--sample_interval', type=int, default=1000, help='interval between image sampling')
+# opt = parser.parse_args()
+
+@dataclasses
+class OptClass:
+    n_epochs: int = 100
+    batch_size: int = 64
+    lr: float = 2e-4
+    b1: float = 0.5
+    b2: float = 0.999
+    n_cpu: int = 8
+    latent_dim: int = 100
+    n_classes: int = 10
+    img_size: int = 32
+    channels: int = 1
+    sample_inteval: int = 1000
+
+opt = OptClass()
+
 print(opt)
 
 img_shape = (opt.channels, opt.img_size, opt.img_size)
@@ -197,7 +215,7 @@ discriminator.eval()
 generator.load('generator_last.pkl')
 discriminator.load('discriminator_last.pkl')
 
-number = "14161371414908"
+number = "14161371414908" #TODO: 写入比赛页面中指定的数字序列（字符串类型）
 n_row = len(number)
 z = jt.array(np.random.normal(0, 1, (n_row, opt.latent_dim))).float32().stop_grad()
 labels = jt.array(np.array([int(number[num]) for num in range(n_row)])).float32().stop_grad()
