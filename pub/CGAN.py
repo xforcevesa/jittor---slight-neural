@@ -24,7 +24,6 @@ if jt.has_cuda:
 # parser.add_argument('--sample_interval', type=int, default=1000, help='interval between image sampling')
 # opt = parser.parse_args()
 
-@dataclasses
 class OptClass:
     n_epochs: int = 100
     batch_size: int = 64
