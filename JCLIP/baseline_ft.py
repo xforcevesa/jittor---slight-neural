@@ -15,7 +15,7 @@ parser.add_argument('--split', type=str, default='A')
 args = parser.parse_args()
 
 model, preprocess = clip.load("ViT-B-32.pkl")
-classes = open('Dataset/classes.txt').read().splitlines()
+classes = open('Dataset/classname.txt').read().splitlines()
 
 # remove the prefix Animal, Thu-dog, Caltech-101, Food-101
 
@@ -53,7 +53,9 @@ for i in range(len(train_imgs)):
         cnt[label] = 0
     if cnt[label] < 4:
         new_train_imgs.append(train_imgs[i])
+        # [1,]
         new_train_labels.append(train_labels[i])
+        # print("training labels: ", train_labels[i].shape)
         cnt[label] += 1
 
 # calculate image features of training data
@@ -66,6 +68,9 @@ with jt.no_grad():
         image = preprocess(image).unsqueeze(0)
         image_features = model.encode_image(image)
         image_features /= image_features.norm(dim=-1, keepdim=True)
+        # print("image features: ", image_features.shape)
+        # exit(0)
+        # [1, 512,]
         train_features.append(image_features)
 
 train_features = jt.cat(train_features).numpy()
@@ -74,7 +79,7 @@ train_labels = jt.cat(new_train_labels).numpy()
 # training
 classifier = LogisticRegression(random_state=0,
                                 C=8.960,
-                                max_iter=1000,
+                                max_iter=10000,
                                 verbose=1)
 classifier.fit(train_features, train_labels)
 
@@ -101,6 +106,7 @@ test_features = jt.cat(test_features).numpy()
 with open('result.txt', 'w') as save_file:
     i = 0
     predictions = classifier.predict_proba(test_features)
+    print('Testing: ', predictions)
     for prediction in predictions.tolist():
         prediction = np.asarray(prediction)
         top5_idx = prediction.argsort()[-1:-6:-1]

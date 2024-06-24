@@ -13,7 +13,7 @@ parser.add_argument('--split', type=str, default='A')
 args = parser.parse_args()
 
 model, preprocess = clip.load("ViT-B-32.pkl")
-classes = open('Dataset/classes.txt').read().splitlines()
+classes = open('Dataset/classname.txt').read().splitlines()
 
 # remove the prefix Animal, Thu-dog, Caltech-101, Food-101
 
